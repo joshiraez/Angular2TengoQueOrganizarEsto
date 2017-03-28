@@ -12,8 +12,8 @@ modulo.controller('OwnersControllers', function(ownersFactory) {
    vm.filtro = "";
     
     vm.owners = ownersFactory.getOwners();
-    vm.deleteOwner = function(index) {
-        ownersFactory.deleteOwner(index);
+    vm.deleteOwner = function(owner) {
+        ownersFactory.deleteOwner(owner);
     };
     
     vm.saveOwner = function(){

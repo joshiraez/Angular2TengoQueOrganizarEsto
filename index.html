@@ -70,7 +70,7 @@
                     </tr>
                     <!-- SI EL FILTRO DE MAS ADELANTE LE PONES VM, PETARA, HARD :S-->
                     <tr class="text-left" 
-                        ng-repeat="owner in vm.owners | filter : vm.filtro | orderBy : numPets" 
+                        ng-repeat="owner in vm.owners | orderBy : 'numPets' | filter : { name: vm.filtro} " 
                         ng-class="{'text-danger' : owner.numPets==0}"> 
                         <!-- Tambien ng-class="owner.numPets==0 ? 'text-danger' : '' -->
                         <!--ng-if="owner.name.includes(filtro)"  Esto hace lo mismo que filtro no strict -->
@@ -78,13 +78,13 @@
                         <td> {{ $index + 1 }}</td>
                         <td> {{ owner.name | uppercase}}</td>
                         <td> {{ owner.address }}</td>
-                        <td> {{ owner.phone }}</td>
+                        <td> {{ owner.phone | customFilter }}</td>
                         <td>
                              {{ owner.numPets }}
                         <td>
                             <button type="button" 
                                     class="btn btn-danger" 
-                                    ng-click="vm.deleteOwner($index)">X</button>
+                                    ng-click="vm.deleteOwner(owner)">X</button>
                         </td>
                             
                     </tr>
@@ -115,6 +115,7 @@
         <script src="app.js"></script>
         <script src="ownersControllers.js"></script>
         <script src="ownersFactory.js"></script>
+        <script src="customFilter.js"> </script>
     </body>
 </html>
 

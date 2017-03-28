@@ -15,8 +15,8 @@ modulo.factory('ownersFactory', ownersFactory);
            createOwner : function (name, address, phone, numPets){
                owners.push({'name':name,'address':address,'phone':phone,'numPets':numPets});
            },
-             deleteOwner : function (index) {
-                owners.splice(index, 1);
+             deleteOwner : function (owner) {
+                owners.splice(owners.indexOf(owner),1);
 
             }
         }
