@@ -9,7 +9,7 @@ modulo.controller('OwnersControllers', function(ownersFactory) {
     vm.phone;
     vm.numPets;
     
-   vm.filtro = "P";
+   vm.filtro = "";
     
     vm.owners = ownersFactory.getOwners();
     vm.deleteOwner = function(index) {

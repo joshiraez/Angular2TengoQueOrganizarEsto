@@ -52,15 +52,14 @@
                 <form class="well">
                   <div class="form-group">
                     <label for="search">Búsqueda:</label>
-                    <input type="text" class="form-control" id="search" placeholder="Indique el nombre del propietario a buscar" ng-model="filtro" />
+                    <input type="text" class="form-control" id="search" placeholder="Indique el nombre del propietario a buscar" ng-model="vm.filtro" />
                   </div>
                   <button type="submit" class="btn btn-success">Buscar</button>
                 </form>
             </article>
             <article>
                 <h4 ng-if="filtro!=''">Filtrado por {{ vm.filtro }} </h4>
-                <table class="table table-striped text-center" 
-                      >
+                <table class="table table-striped text-center">
                     <tr class="active">
                         <th>&#35;</th>
                         <th>Nombre</th>
@@ -69,12 +68,15 @@
                         <th>Número mascotas</th>
                         <th>Acciones</th>
                     </tr>
-                    <tr class="text-left" ng-repeat="owner in vm.owners" 
-                        ng-if="owner.name.includes(filtro)"  
-                        ng-class="{'text-danger' : owner.numPets==0}"> <!-- Tambien ng-class="owner.numPets==0 ? 'text-danger' : '' -->
+                    <!-- SI EL FILTRO DE MAS ADELANTE LE PONES VM, PETARA, HARD :S-->
+                    <tr class="text-left" 
+                        ng-repeat="owner in vm.owners | filter : vm.filtro | orderBy : numPets" 
+                        ng-class="{'text-danger' : owner.numPets==0}"> 
+                        <!-- Tambien ng-class="owner.numPets==0 ? 'text-danger' : '' -->
+                        <!--ng-if="owner.name.includes(filtro)"  Esto hace lo mismo que filtro no strict -->
                         
                         <td> {{ $index + 1 }}</td>
-                        <td> {{ owner.name }}</td>
+                        <td> {{ owner.name | uppercase}}</td>
                         <td> {{ owner.address }}</td>
                         <td> {{ owner.phone }}</td>
                         <td>
